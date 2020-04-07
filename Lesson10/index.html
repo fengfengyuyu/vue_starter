@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<title>Player Viewer</title>
+		 <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet">
+		 <link href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css" rel="stylesheet">
+		 <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
+		  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+		  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <body>
+
+	<div id="simpleApp">
+		<v-app>
+	      <v-content>
+	        <v-container>
+	        	<v-layout row>
+		        	<div>
+		              <v-btn v-on:click="loadApi" color="primary">Load Data</v-btn>
+		               <v-select v-if="apiData"
+			              v-bind:items="apiData.nations"
+			              v-model="selectedCountry"
+			              label="Select Nation"
+			              v-on:change="selectionChanged"
+			              single-line
+			              bottom
+			            ></v-select>
+		            </div>
+	        	</v-layout>
+	        	<v-content v-if="selectedCountry">
+	        		<table>
+	        			<tr>
+	        				<th colspan="3">
+	        					<div>	
+		              				<v-btn v-on:click="toggleDetails" color="primary">Details 
+		              				{{ showDetails ? 'Off' : 'On' }}</v-btn>
+	        					</div>
+	        				</th>
+	        				<th v-show="showDetails">Age</th>
+	        				<th v-show="showDetails">Overall</th>
+	        			</tr>
+	        			<tr v-for="player in apiData.top_10s[selectedCountry]">
+	        				<td><img v-bind:src="player.photo" alt="NOTFOUND"></td>
+	        				<td>{{ player.name }}</td>
+	        				<td><img v-bind:src="player.club_logo" alt="NOTFOUND"></td>
+	        				<td v-show="showDetails">{{ player.age }}</td>
+	        				<td v-show="showDetails">{{ player.overall }}</td>
+	        			</tr>
+	        		</table>
+	        		{{ apiData.top_10s[selectedCountry] }}
+	        	</v-content>
+	        </v-container>
+	      </v-content>
+		<pre>
+			{{ $data }}
+		</pre>
+	    </v-app>
+	</div>
+
+</body>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue-resource@1.3.5"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> 
+<script src="scripts/scripts.js"></script>
+
+</html>

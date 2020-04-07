@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+<body>
+    <div id="simpleApp">
+		<v-app>
+	      <v-content>
+	        <v-container>
+	        	<v-layout row>
+		        	<div>
+		              <v-btn v-on:click="loadApi" color="primary">Load Data</v-btn>
+		            </div>
+	        	</v-layout>
+	        </v-container>
+	        <v-container>
+			    <v-alert v-if="showAlert" type="success" icon="mdi-firework" >
+		      		This is a success alert.
+		   		</v-alert>
+	        </v-container>
+	      </v-content>
+		<pre>
+			{{ $data }}
+		</pre>
+	    </v-app>
+	</div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>  
+  <script>
+    //const axios = require('axios');
+    new Vue({
+      el: '#simpleApp',
+      vuetify: new Vuetify(),
+      data: {
+		showAlert: false
+        },
+        methods: {
+            loadApi: function () {
+                axios.get('https://jsonplaceholder.typicode.com/posts').
+                then(this.successCallback, this.errorCallback);
+            },
+            successCallback: function(response) {
+                console.log('successCallback response:' , response);
+                this.showAlert = true
+            },
+            errorCallback: function(response) {
+                console.log('errorCallback response:' , response);
+            }
+        }
+    })
+  </script>
+</body>
+</html>

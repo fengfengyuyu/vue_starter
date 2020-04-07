@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Player Viewer</title>
+	 <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet">
+	  <link href="https://unpkg.com/vuetify/dist/vuetify.min.css" rel="stylesheet">
+	  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+<body>
+
+	<div id="simpleApp">
+		<v-app>
+	      <v-content>
+	        <v-container>
+	        	<v-layout row>
+		        	<div>
+		              <v-btn v-on:click="showAlert=true" color="primary">Primary</v-btn>
+		            </div>
+		            <div>
+		              <v-btn v-on:click="showAlert=false" color="error">Error</v-btn>
+		            </div>
+		            <div>
+		              <v-btn light disabled>Disabled</v-btn>
+		            </div>
+	        	</v-layout>
+	        </v-container>
+	        <v-container>
+			    <v-alert v-show="showAlert" color="success" icon="check_circle" value="true">
+		      		This is a success alert.
+		   		</v-alert>
+	        </v-container>
+	      </v-content>
+	    </v-app>
+		<pre>
+			{{ $data }}
+		</pre>
+	</div>
+
+</body>
+
+<script src="scripts/framework/vue_2_5_13.js"></script>
+<script src="https://unpkg.com/vuetify/dist/vuetify.js"></script>
+<script src="scripts/scripts.js"></script>
+
+</html>

@@ -1,0 +1,26 @@
+table#playerTable {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+img {
+	width: 64px;
+	height: 64px;
+}
+
+#playerTable td, #playerTable th {
+	border: 1px solid #616161;
+	color: #bdbdbd;
+	padding: 8px;
+}
+
+#playerTable th {
+    padding-top: 18px;
+    padding-bottom: 18px;
+    text-align: left;
+}
+
+#playerTable tr:not(.nohover):hover {
+	background-color: #616161;
+}
+
